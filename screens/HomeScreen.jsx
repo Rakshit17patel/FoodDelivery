@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StatusBar, TextInput, ScrollView } from 'react-native'
 import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Categories from '../components/categories'
