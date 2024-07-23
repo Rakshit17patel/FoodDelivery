@@ -1,11 +1,23 @@
-import { View, Text, TextInput, SafeAreaView, ScrollView } from "react-native";
-import React from "react";
-import { StatusBar } from "expo-status-bar";
+import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView } from 'react-native'
+import React, { useLayoutEffect, useState, useEffect } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import Categories from '../components/categories'
+import FeatureRow from '../components/featuredRow'
+import { getFeaturedResturants } from '../api';
 import * as Icon from "react-native-feather";
-import { themeColors } from "../theme";
-import Categories from "../components/categories";
+import { themeColors } from '../theme'
 
 export default function HomeScreen() {
+      const [featuredCategories, setFeaturedCategories] = useState([])
+    const navigation = useNavigation();
+    useLayoutEffect(() => {
+      navigation.setOptions({headerShown: false})
+    }, [])
+    useEffect(()=>{
+        getFeaturedResturants().then(data=>{
+            setFeaturedCategories(data);
+        })
+    },[]);
   return (
     <SafeAreaView className="bg-white">
       {/* Search bar */}
@@ -40,6 +52,23 @@ export default function HomeScreen() {
         }}>
           {/* categories */}
           <Categories/>
+            {/* featured */}
+        <View className="mt-5">
+        {
+                        featuredCategories?.map(category=>{
+                return (
+                        <FeatureRow 
+                            key={category._id}
+                            id={category._id}
+                            title={category.name}
+                            resturants={category?.restaurants}
+                            description={category.description}
+                            featuredCategory={category._type}
+                        />
+                )
+            })
+        }
+        </View>
         </ScrollView>
     </SafeAreaView>
   );
