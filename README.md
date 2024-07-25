@@ -2,4 +2,4 @@
 Food Delivery Mobile App | React Native | Redux
 
 ## Project Demo
-![Demo](https://github.com/Rakshit17patel/FoodDelivery/raw/main/client/assets/Demo.gif)
+![Demo](https://github.com/Rakshit17patel/FoodDelivery/raw/main/client/demo.gif)
